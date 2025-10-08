@@ -1,7 +1,8 @@
 import * as React from "react";
 import Button from "./Button";
-import { view, Text } from "react-native";
-import { myColor } from "../styles/Colors";
+import { View, Text } from "react-native";
+import { myColors } from "../styles/Colors";
+import { Styles } from "../styles/GlobalStyles";
 
 export default function MyKeyboard(){
     const [firstNumber, setFirstNumber] = React.useState("");
@@ -49,9 +50,9 @@ export default function MyKeyboard(){
         }
     };
 
-    const firstNumberDisplay = {} => {
+    const firstNumberDisplay = () => {
         if(result !== null){
-            return <Text style={result <99999 ? [Styles.screenFirstNumber, {color: myColors.result}] : [Styles.screenFirstNumber, {fontSize; 50, color: myColors,result}]}>{result?.toString()}</Text>
+            return <Text style={result < 99999 ? [Styles.screenFirstNumber, {color: myColors.result}] : [Styles.screenFirstNumber, {fontSize; 50, color: myColors,result}]}>{result?.toString()}</Text>
         }
         if(firstNumber && firstNumber.length <6) {
             return <Text style={Styles.screenFirstNumber}>{"0"}</Text>
