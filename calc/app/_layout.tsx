@@ -15,7 +15,7 @@ const RootLayout = () => {
   }
 
   return (
-    <View style={globalStyles.Background}>
+    <View style={globalStyles.background}>
       <Slot />
 
       <StatusBar style="light" />
