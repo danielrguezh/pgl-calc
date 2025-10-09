@@ -22,6 +22,9 @@ export const globalStyles = StyleSheet.create({
     },
 
     subResult: {
-
-    }
+        color: Colors.textSecondary,
+        fontSize: 40,
+        textAlign: 'right',
+        fontWeight: '300',
+    },
 })
