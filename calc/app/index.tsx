@@ -1,21 +1,15 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
+import { globalStyles } from '@/styles/global-styles';
 
-export default function Index() {
+const CalculatorApp = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Home screen</Text>
+    <View style={globalStyles.calculatorContainer}>
+      <Text style={globalStyles.mainResult}>50 x 50</Text>
+      <Text style={{fontSize: 40, fontFamily: 'SpaceMono', color: 'white'}}>
+        250
+      </Text>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#25292e',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    color: '#fff',
-  },
-});
+export default CalculatorApp;
