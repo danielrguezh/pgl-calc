@@ -1,5 +1,11 @@
-import { Stack } from "expo-router";
-
-export default function RootLayout() {
-  return <Stack />;
+import { View, Text } from 'react-native';
+const RootLayout = () => {
+  return (
+    <View>
+      <Text>RootLayout</Text>
+    </View>
+  )
 }
+export default RootLayout;
+
+rnfce
