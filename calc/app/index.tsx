@@ -19,6 +19,7 @@ const CalculatorApp = () => {
     subtractOperation,
     addOperation,
     calculateResult,
+    calculatePorcentage,
   } = useCalculator();
 
   return (
@@ -51,7 +52,7 @@ const CalculatorApp = () => {
           label="%"
           color={Colors.lightGray}
           blackText 
-          onPress={()=> buildNumber('%')}  
+          onPress={calculatePorcentage}  
         />
         <CalculatorButton 
           label="÷" 

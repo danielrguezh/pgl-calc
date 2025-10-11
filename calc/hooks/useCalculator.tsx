@@ -16,7 +16,18 @@ export const useCalculator = () => {
     useEffect(() => {
         if (lastOperation.current) {
             const firstFormulaPart = formula.split(' ').at(0);
-            setFormula(`${firstFormulaPart} ${lastOperation.current} ${currentNumber}`);
+            let operation = lastOperation.current;
+            let number = currentNumber;
+
+            if (operation === Operator.add && number.startsWith('-')) {
+                operation = Operator.subtract;
+                number = number.slice(1);
+            }
+            else if (operation === Operator.subtract && number.startsWith('-')) {
+                operation = Operator.add;
+                number = number.slice(1);
+            }
+            setFormula(`${firstFormulaPart} ${operation} ${number}`);
         } else {
             setFormula(currentNumber);
         }
@@ -35,10 +46,12 @@ export const useCalculator = () => {
     };
 
     const toggleSign = () => {
-        if (currentNumber.includes('-')) {
-            return setCurrentNumber(currentNumber.replace('-', ''));
+        if (currentNumber === '0') return;
+        if (currentNumber.startsWith('-')) {
+            setCurrentNumber(currentNumber.slice(1));
+        } else {
+            setCurrentNumber('-' + currentNumber);
         }
-        setCurrentNumber('-' + currentNumber);
     }
 
     const deleteLast = () => {
@@ -56,6 +69,15 @@ export const useCalculator = () => {
 
         setCurrentNumber('0');
     };
+
+    const calculatePorcentage = () => {
+        const number = Number(currentNumber) / 100;
+        setCurrentNumber(`${number}`);
+        if (previousNumber !== '0') {
+            const previous = Number(previousNumber) / 100;
+            setPreviousNumber(`${previous}`);
+        }
+    }
 
     const setLastNumber = () => {
         calculateResult();
@@ -115,7 +137,7 @@ export const useCalculator = () => {
 
     const buildNumber = (numberText: string) => {
         if (currentNumber.includes('.') && numberText === '.') return;
-        if (currentNumber.startsWith('0') || currentNumber.startsWith('-0')) {
+        if (currentNumber.startsWith('0')) {
             if (numberText === '.') {
                 return setCurrentNumber(currentNumber + numberText);
             }
@@ -145,5 +167,6 @@ export const useCalculator = () => {
         subtractOperation,
         addOperation,
         calculateResult,
+        calculatePorcentage,
     }
 };
