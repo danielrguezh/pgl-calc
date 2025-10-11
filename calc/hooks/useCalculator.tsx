@@ -27,11 +27,15 @@ export const useCalculator = () => {
                 operation = Operator.add;
                 number = number.slice(1);
             }
-            setFormula(`${firstFormulaPart} ${operation} ${number}`);
+            if (number === '0') {
+                setFormula(`${firstFormulaPart} ${operation}`);
+            } else {
+                setFormula(`${firstFormulaPart} ${operation} ${number}`);
+            }
         } else {
             setFormula(currentNumber);
         }
-    }, [currentNumber]);
+    }, [currentNumber, previousNumber]);
 
     useEffect(() => {
         const subResult = calculateSubResult();
