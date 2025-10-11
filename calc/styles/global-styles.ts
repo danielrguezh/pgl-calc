@@ -1,5 +1,4 @@
 import { Colors } from "@/constants/Colors";
-import { Button } from "@react-navigation/elements";
 import { StyleSheet } from "react-native";
 
 export const globalStyles = StyleSheet.create({
