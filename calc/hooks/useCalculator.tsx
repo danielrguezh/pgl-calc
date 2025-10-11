@@ -19,6 +19,19 @@ export const useCalculator = () => {
             let operation = lastOperation.current;
             let number = currentNumber;
 
+            
+
+            if (formula === '-' && number.startsWith('-')) {
+                setFormula(number);
+                lastOperation.current = undefined;
+                return;
+            }
+            
+            if (operation === Operator.subtract && firstFormulaPart === '0' && number === '0') {
+                setFormula('-');
+                return;
+            }
+
             if (operation === Operator.add && number.startsWith('-')) {
                 operation = Operator.subtract;
                 number = number.slice(1); 
@@ -104,6 +117,15 @@ export const useCalculator = () => {
     }
 
     const subtractOperation = () => {
+        if ((currentNumber === '-' || formula === '-') && formula === '-') {
+            return;
+        }
+        if (currentNumber === '0' && formula === '0') {
+            setFormula('-');
+            setCurrentNumber('-');
+            lastOperation.current = Operator.subtract;
+            return;
+        }
         setLastNumber();
         lastOperation.current = Operator.subtract;
     }
@@ -123,6 +145,8 @@ export const useCalculator = () => {
     }
 
     const calculateSubResult = () => {
+        if (formula === '-') return '';
+
         const [firstValue, operation, secondValue] = formula.split(' ');
         const number1 = parseNumber(firstValue);
         const number2 = parseNumber(secondValue);
