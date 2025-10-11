@@ -181,12 +181,11 @@ export const useCalculator = () => {
     const calculateResult = () => {
         const result = calculateSubResult();
         setFormula(`${result}`);
+        setCurrentNumber(`${result}`);
         lastOperation.current = undefined;
         setPreviousNumber('0');
     }
     
-
-
     const buildNumber = (numberText: string) => {
         if (currentNumber.includes('.') && numberText === '.') return;
         if (currentNumber.startsWith('0')) {

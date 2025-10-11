@@ -6,9 +6,10 @@ interface Props extends TextProps {
 }
 
 const ThemeText = ({children, variant = 'h1', ...rest}: Props) => {
+    
     return (
         <Text style={[
-            { 
+            {
                 color: 'white', 
                 fontFamily: 'SpaceMono'
             },

@@ -7,6 +7,15 @@ export const globalStyles = StyleSheet.create({
         backgroundColor: Colors.background,
     },
 
+    barContainer: {
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
+        marginBottom: 80,
+        height: 40,
+        flexDirection: 'row',
+    },
+
     calculatorContainer: {
         flex: 1,
         justifyContent: 'flex-end',

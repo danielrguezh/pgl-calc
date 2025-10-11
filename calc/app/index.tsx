@@ -1,9 +1,10 @@
-import { View, Text } from 'react-native';
+import { View, Text, Switch } from 'react-native';
 import { globalStyles } from '@/styles/global-styles';
 import ThemeText from '@/components/ThemeText';
 import CalculatorButton from '@/components/CalculatorButton';
 import { Colors } from '@/constants/Colors';
 import { useCalculator } from '@/hooks/useCalculator';
+import { useState } from 'react';
 
 const CalculatorApp = () => {
 
