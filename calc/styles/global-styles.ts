@@ -9,42 +9,49 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     paddingBottom: 30,
+    paddingHorizontal: 20,
   },
 
   row: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
     marginBottom: 18,
-    paddingHorizontal: 10,
   },
 
   mainResult: {
-    fontSize: 70,
+    fontSize: 64,
     textAlign: "right",
-    fontWeight: "400",
+    fontWeight: "500",
     fontFamily: "SpaceMono",
+    letterSpacing: 1,
+    marginBottom: 8,
   },
 
   subResult: {
-    fontSize: 40,
+    fontSize: 28,
     textAlign: "right",
     fontWeight: "300",
     fontFamily: "SpaceMono",
+    opacity: 0.7,
   },
 
   button: {
     height: 80,
     width: 80,
-    borderRadius: 100,
+    borderRadius: 24,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+    elevation: 4,
   },
 
   buttonText: {
     textAlign: "center",
-    fontSize: 30,
-    fontWeight: "300",
+    fontSize: 28,
+    fontWeight: "500",
     fontFamily: "SpaceMono",
   },
 
@@ -56,9 +63,9 @@ export const globalStyles = StyleSheet.create({
   },
 
   modalContent: {
-    width: "80%",
+    width: "85%",
     borderRadius: 20,
-    padding: 20,
+    padding: 25,
     alignItems: "center",
   },
 
@@ -66,6 +73,7 @@ export const globalStyles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "700",
     marginBottom: 20,
+    textAlign: "center",
   },
 
   modalButton: {
@@ -100,54 +108,46 @@ export const globalStyles = StyleSheet.create({
 
   historyModalTextEmpty: {
     textAlign: "center",
-  },
-
-  historyModalButtonRow: {
-    flexDirection: "row",
-    marginTop: 10,
-  },
-
-  historyModalButton: {
-    flex: 1,
-    paddingVertical: 12,
-    borderRadius: 10,
-    alignItems: "center",
+    fontSize: 16,
+    opacity: 0.7,
   },
 
   topBarContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 10,
-    paddingHorizontal: 20,
     alignItems: "center",
+    paddingHorizontal: 0,
+    marginBottom: 30,
   },
 
   topBarButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    borderRadius: 12,
   },
 
   topBarButtonText: {
     fontWeight: "600",
+    fontSize: 16,
   },
 
   topBarSelectedMode: {
     fontWeight: "700",
+    fontSize: 16,
   },
 
   input: {
     borderWidth: 1,
-    padding: 10,
-    borderRadius: 8,
-    marginBottom: 10,
+    borderRadius: 12,
+    padding: 12,
     fontSize: 16,
+    marginBottom: 10,
   },
 
   resultContainer: {
     alignItems: "center",
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 16,
   },
 
   resultTitle: {
@@ -156,7 +156,7 @@ export const globalStyles = StyleSheet.create({
   },
 
   resultValue: {
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: "bold",
     marginVertical: 8,
   },
@@ -185,16 +185,32 @@ export const globalStyles = StyleSheet.create({
   },
 
   converterButton: {
-    paddingVertical: 12,
+    paddingVertical: 14,
     paddingHorizontal: 25,
-    borderRadius: 10,
+    borderRadius: 12,
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",
   },
+
   converterButtonText: {
     fontWeight: "600",
     textAlign: "center",
+    fontSize: 16,
   },
-});
 
+  frame: {
+    borderRadius: 20,
+    borderWidth: 3,
+    padding: 2,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 6,
+    marginHorizontal: -30,
+    minHeight: 162,
+    justifyContent: "flex-end",
+    marginBottom: 10,
+  }
+});

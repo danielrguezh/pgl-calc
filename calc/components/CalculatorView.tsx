@@ -8,6 +8,7 @@ import { useThemeColors } from "@/hooks/useThemeColors";
 interface CalculatorViewProps {
   formula: string;
   previousNumber: string;
+  currentNumber: string;
   buildNumber: (num: string) => void;
   clean: () => void;
   toggleSign: () => void;
@@ -23,6 +24,7 @@ interface CalculatorViewProps {
 const CalculatorView = ({
   formula,
   previousNumber,
+  currentNumber,
   buildNumber,
   clean,
   toggleSign,
@@ -39,22 +41,28 @@ const CalculatorView = ({
   return (
     <View>
       <View style={{ paddingHorizontal: 30, marginBottom: 20 }}>
+        <View
+          style={[globalStyles.frame, {backgroundColor: colors.backgroundSecondary,borderColor: colors.orange,}]}
+        >
         <ThemeText variant="h1" color={colors.textPrimary}>
           {formula}
         </ThemeText>
-        {formula === previousNumber ? (
-          <ThemeText variant="h2" color={colors.textSecondary}>
-            {" "}
-          </ThemeText>
-        ) : (
-          <ThemeText variant="h2" color={colors.textSecondary}>
-            {previousNumber}
-          </ThemeText>
-        )}
+        {
+          formula === previousNumber ? (
+            <ThemeText variant="h2" color={colors.textSecondary}>
+              {" "}
+            </ThemeText>
+          ) : (
+            <ThemeText variant="h2" color={colors.textSecondary}>
+              {previousNumber}
+            </ThemeText>
+          )
+        }
+        </View>
       </View>
 
       <View style={globalStyles.row}>
-        <CalculatorButton label="C" color={colors.lightGray} blackText onPress={clean} />
+        <CalculatorButton label={currentNumber === "0" ? "AC" : "C"} color={colors.lightGray} blackText onPress={clean} />
         <CalculatorButton label="del" color={colors.lightGray} blackText onPress={deleteLast} />
         <CalculatorButton label="%" color={colors.lightGray} blackText onPress={calculatePorcentage} />
         <CalculatorButton label="÷" color={colors.orange} onPress={divideOperation} />

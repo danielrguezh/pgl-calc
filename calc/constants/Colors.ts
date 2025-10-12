@@ -1,25 +1,23 @@
 export const Colors = {
   light: {
-    background: "#F3F4F6",
+    background: "#F8F9FA",
     backgroundSecondary: "#FFFFFF",
     textPrimary: "#111827",
     textSecondary: "#6B7280",
     button: "#E5E7EB",
-    darkGray: "#374151",
-    orange: "#F97316",
+    darkGray: "#2E2E2E",
+    orange: "#FF9500",
     lightGray: "#D1D5DB",
   },
 
   dark: {
-    background: "#121212",
-    backgroundSecondary: "#1E1E1E",
-    textPrimary: "#FFFFFF",
-    textSecondary: "#A3A3A3",
-    button: "#2D2D2D",
-    darkGray: "#2E2E2E",
-    orange: "#F97316",
-    lightGray: "#4B5563",
+    background: "#0C0C0C",
+    backgroundSecondary: "#1A1A1A",
+    textPrimary: "#F9FAFB",
+    textSecondary: "#9CA3AF",
+    button: "#2A2A2A",
+    darkGray: "#3A3A3A",
+    orange: "#FF9500",
+    lightGray: "#525252",
   },
 } as const;
-
-
