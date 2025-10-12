@@ -14,5 +14,6 @@ export const useThemeColors = () => {
     darkGray: isLight ? Colors.light.darkGray : Colors.dark.darkGray,
     orange: Colors.light.orange,
     lightGray: isLight ? Colors.light.lightGray : Colors.dark.lightGray,
+    button: isLight ? Colors.light.button : Colors.dark.button,
   };
 };
