@@ -17,6 +17,7 @@ const CalculatorApp = () => {
     formula,
     previousNumber,
     history,
+    currentNumber,
     buildNumber,
     clean,
     toggleSign,
@@ -51,6 +52,7 @@ const CalculatorApp = () => {
         <CalculatorView
           formula={formula}
           previousNumber={previousNumber}
+          currentNumber={currentNumber}
           buildNumber={buildNumber}
           clean={clean}
           toggleSign={toggleSign}
