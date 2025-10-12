@@ -6,11 +6,11 @@ import CalculatorView from '@/components/CalculatorView';
 import ModeModal from '@/components/modals/ModeModal';
 import HistoryModal from '@/components/modals/HistoryModal';
 import TopBar from '@/components/TopBar';
-import BMICalculator from '@/components/BMICalculator';
-import CurrencyConverter from '@/components/CurrencyCoverter';
-import FinanceTools from '@/components/FinanceTools';
-import TemperatureConverter from '@/components/TemperatureConverter';
-import SpeedConverter from '@/components/SpeedConverter';
+import BMICalculator from '@/components/modes/BMICalculator';
+import CurrencyConverter from '@/components/modes/CurrencyCoverter';
+import FinanceTools from '@/components/modes/FinanceTools';
+import TemperatureConverter from '@/components/modes/TemperatureConverter';
+import SpeedConverter from '@/components/modes/SpeedConverter';
 
 const CalculatorApp = () => {
   const {
