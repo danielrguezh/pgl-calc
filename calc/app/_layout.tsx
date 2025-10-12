@@ -10,30 +10,21 @@ import { globalStyles } from "@/styles/global-styles";
 
 const isAndroid = Platform.OS === "android";
 
-const isEdgeToEdgeActive = async () => {
-  if (!isAndroid) return false;
-  const behavior = await NavigationBar.getBehaviorAsync();
-  return behavior.startsWith("overlay");
-};
-
 const RootLayout = () => {
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   const [theme, setTheme] = useState<ThemeType>("light");
+
   const isLight = theme === "light";
 
   useEffect(() => {
     if (isAndroid) {
-      isEdgeToEdgeActive().then((edgeToEdge) => {
-        if (!edgeToEdge) {
-          NavigationBar.setBackgroundColorAsync(
-            isLight ? Colors.light.background : Colors.dark.background
-          );
-        }
-        NavigationBar.setButtonStyleAsync(isLight ? "dark" : "light");
-      });
+      NavigationBar.setBackgroundColorAsync(
+        isLight ? Colors.dark.background : Colors.light.background
+      );
+      NavigationBar.setButtonStyleAsync(isLight ? "dark" : "light");
     }
   }, [isLight]);
 
