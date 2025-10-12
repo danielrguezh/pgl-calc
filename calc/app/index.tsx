@@ -1,4 +1,4 @@
-import { View, Text, Switch } from 'react-native';
+import { View, Text, Switch, Pressable, Modal, ScrollView } from 'react-native';
 import { globalStyles } from '@/styles/global-styles';
 import ThemeText from '@/components/ThemeText';
 import CalculatorButton from '@/components/CalculatorButton';
@@ -11,6 +11,7 @@ const CalculatorApp = () => {
   const  {
     formula,
     previousNumber,
+    history,
     buildNumber,
     clean,
     toggleSign,
@@ -21,10 +22,69 @@ const CalculatorApp = () => {
     addOperation,
     calculateResult,
     calculatePorcentage,
+    clearHistory,
   } = useCalculator();
+
+  const [showHistory, setShowHistory] = useState(false);
+  const [showModeModal, setShowModeModal] = useState(false);
+  const [selectedMode, setSelectedMode] = useState('Calculator');
+
+  const modes = [
+    { label: 'Currency', emoji: '💰' },
+    { label: 'Finance', emoji: '📈' },
+    { label: 'Temperature', emoji: '🌡️' },
+    { label: 'BMI', emoji: '⚖️' },
+    { label: 'Speed', emoji: '🚗' },
+    { label: 'Calculator', emoji: '🔢' },
+  ];
+
+  const handleSelectMode = (mode: string) => {
+    setSelectedMode(mode);
+    setShowModeModal(false);
+    console.log(`Modo seleccionado: ${mode}`);
+  };
 
   return (
     <View style={globalStyles.calculatorContainer}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          marginBottom: 10,
+          paddingHorizontal: 20,
+        }}
+      >
+        <Pressable
+          onPress={() => setShowModeModal(true)}
+          style={{
+            backgroundColor: Colors.lightGray,
+            paddingVertical: 8,
+            paddingHorizontal: 14,
+            borderRadius: 10,
+          }}
+        >
+          <Text style={{ color: 'black', fontWeight: '600' }}>Modo</Text>
+        </Pressable>
+
+        <View>
+          <Text style={{ color: Colors.orange, fontWeight: '700' }}>
+            {selectedMode}
+          </Text>
+        </View>
+      </View>
+      <View style={{ alignItems: 'flex-end', marginBottom: 10, paddingHorizontal: 20 }}>
+        <Pressable
+          onPress={() => setShowHistory(true)}
+          style={{
+            backgroundColor: Colors.lightGray,
+            paddingVertical: 8,
+            paddingHorizontal: 14,
+            borderRadius: 10,
+          }}
+        >
+          <Text style={{ color: 'black', fontWeight: '600' }}>Historial</Text>
+        </Pressable>
+      </View>
       <View style={{ paddingHorizontal: 30, marginBottom: 20 }}>
         <ThemeText variant='h1'>{formula}</ThemeText>
           {
@@ -145,6 +205,148 @@ const CalculatorApp = () => {
           onPress={calculateResult} 
         />
       </View>
+        
+      <Modal
+        visible={showModeModal}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowModeModal(false)}
+      >
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: Colors.backgroundLight,
+              width: '80%',
+              borderRadius: 20,
+              padding: 20,
+              alignItems: 'center',
+            }}
+          >
+            <ThemeText variant="h2" style={{ marginBottom: 20 }}>
+              Selecciona un modo
+            </ThemeText>
+
+            {modes.map((m) => (
+              <Pressable
+                key={m.label}
+                onPress={() => handleSelectMode(m.label)}
+                style={{
+                  width: '100%',
+                  backgroundColor:
+                    selectedMode === m.label
+                      ? Colors.orange
+                      : Colors.lightGray,
+                  paddingVertical: 12,
+                  marginBottom: 10,
+                  borderRadius: 12,
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  gap: 10,
+                }}
+              >
+                <Text
+                  style={{
+                    color: selectedMode === m.label ? 'white' : 'black',
+                    fontSize: 18,
+                    fontWeight: '600',
+                  }}
+                >
+                  {m.emoji} {m.label}
+                </Text>
+              </Pressable>
+            ))}
+
+            <Pressable
+              onPress={() => setShowModeModal(false)}
+              style={{
+                marginTop: 10,
+                paddingVertical: 8,
+                paddingHorizontal: 20,
+                borderRadius: 10,
+                backgroundColor: Colors.lightGray,
+              }}
+            >
+              <Text style={{ color: 'black' }}>Cerrar</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        visible={showHistory}
+        transparent
+        animationType="slide"
+        onRequestClose={() => setShowHistory(false)}
+      >
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: 'rgba(0,0,0,0.6)',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: Colors.backgroundLight,
+              width: '85%',
+              maxHeight: '70%',
+              borderRadius: 20,
+              padding: 20,
+            }}
+          >
+            <ThemeText variant="h2" style={{ marginBottom: 10 }}>
+              Historial
+            </ThemeText>
+
+            {history.length === 0 ? (
+              <Text style={{ color: 'gray' }}>No hay cálculos aún</Text>
+            ) : (
+              <ScrollView style={{ marginVertical: 10 }}>
+                {[...history].reverse().map((item, index) => (
+                  <Text key={index} style={{ marginBottom: 6, color: 'black' }}>
+                    {item}
+                  </Text>
+                ))}
+              </ScrollView>
+            )}
+
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+              <Pressable
+                onPress={() => setShowHistory(false)}
+                style={{
+                  backgroundColor: Colors.lightGray,
+                  paddingVertical: 8,
+                  paddingHorizontal: 20,
+                  borderRadius: 10,
+                }}
+              >
+                <Text style={{ color: 'black' }}>Close</Text>
+              </Pressable>
+
+              <Pressable
+                onPress={clearHistory}
+                style={{
+                  backgroundColor: Colors.orange,
+                  paddingVertical: 8,
+                  paddingHorizontal: 20,
+                  borderRadius: 10,
+                }}
+              >
+                <Text style={{ color: 'white' }}>Clear</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
