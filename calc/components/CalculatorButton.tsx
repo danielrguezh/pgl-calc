@@ -29,7 +29,7 @@ const CalculatorButton = ({
         >
             <Text 
                 style={{               
-                    ...globalStyles.ButtonText,
+                    ...globalStyles.buttonText,
                     color: blackText ? 'black' : 'white',
                 }}
             >{label}</Text>
