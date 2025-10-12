@@ -197,7 +197,11 @@ export const useCalculator = () => {
       case Operator.multiply:
         return number1 * number2;
       case Operator.divide:
-        return number1 / number2;
+        if (number2 === 0) {
+          return '';
+        } else {
+          return number1 / number2;
+        }
       default:
         throw new Error(`Operation ${operation} is not implemented`);
     }
