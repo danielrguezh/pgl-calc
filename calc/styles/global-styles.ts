@@ -1,119 +1,109 @@
-import { Colors } from "@/constants/Colors";
 import { StyleSheet } from "react-native";
 
 export const globalStyles = StyleSheet.create({
-
   background: {
     flex: 1,
-    backgroundColor: Colors.background,
   },
 
   calculatorContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
-    paddingBottom: 20,
+    justifyContent: "flex-end",
+    paddingBottom: 30,
   },
 
   row: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     marginBottom: 18,
     paddingHorizontal: 10,
   },
 
   mainResult: {
-    color: Colors.textPrimary,
     fontSize: 70,
-    textAlign: 'right',
-    fontWeight: '400',
-    fontFamily: 'SpaceMono',
+    textAlign: "right",
+    fontWeight: "400",
+    fontFamily: "SpaceMono",
   },
 
   subResult: {
-    color: Colors.textSecondary,
     fontSize: 40,
-    textAlign: 'right',
-    fontWeight: '300',
+    textAlign: "right",
+    fontWeight: "300",
+    fontFamily: "SpaceMono",
   },
 
   button: {
     height: 80,
     width: 80,
-    backgroundColor: Colors.darkGray,
     borderRadius: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginHorizontal: 10,
   },
 
   buttonText: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 30,
-    color: Colors.textPrimary,
-    fontWeight: '300',
-    fontFamily: 'SpaceMono',
+    fontWeight: "300",
+    fontFamily: "SpaceMono",
   },
 
   modalContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   modalContent: {
-    backgroundColor: Colors.backgroundLight,
-    width: '80%',
+    width: "80%",
     borderRadius: 20,
     padding: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
 
   modalTitle: {
     fontSize: 22,
-    fontWeight: '700',
+    fontWeight: "700",
     marginBottom: 20,
-    color: Colors.textPrimary,
   },
 
   modalButton: {
-    width: '100%',
+    width: "100%",
     paddingVertical: 12,
     marginBottom: 10,
     borderRadius: 12,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
     gap: 10,
   },
 
   modalButtonText: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 
   historyModalContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(0,0,0,0.6)",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   historyModalContent: {
-    backgroundColor: Colors.backgroundLight,
-    width: '85%',
-    maxHeight: '70%',
+    width: "85%",
+    maxHeight: "70%",
     borderRadius: 20,
     padding: 20,
   },
 
   historyModalTextEmpty: {
-    color: Colors.textSecondary,
-    textAlign: 'center',
+    textAlign: "center",
   },
 
   historyModalButtonRow: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 10,
   },
 
@@ -121,58 +111,33 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
-
-  historyModalButtonClose: {
-    backgroundColor: Colors.lightGray,
-    marginRight: 5,
-  },
-
-  historyModalButtonClear: {
-    backgroundColor: Colors.orange,
-    marginLeft: 5,
-  },
-
-  historyModalButtonTextClose: {
-    color: Colors.textPrimary,
-    fontWeight: '600',
-  },
-
-  historyModalButtonTextClear: {
-    color: 'white',
-    fontWeight: '600',
-  },
-
 
   topBarContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 10,
     paddingHorizontal: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
 
   topBarButton: {
-    backgroundColor: Colors.lightGray,
     paddingVertical: 8,
     paddingHorizontal: 14,
     borderRadius: 10,
   },
 
   topBarButtonText: {
-    color: 'black',
-    fontWeight: '600',
+    fontWeight: "600",
   },
 
   topBarSelectedMode: {
-    color: Colors.orange,
-    fontWeight: '700',
+    fontWeight: "700",
   },
 
   input: {
     borderWidth: 1,
-    borderColor: Colors.lightGray,
     padding: 10,
     borderRadius: 8,
     marginBottom: 10,
@@ -181,7 +146,6 @@ export const globalStyles = StyleSheet.create({
 
   resultContainer: {
     alignItems: "center",
-    backgroundColor: Colors.backgroundLight,
     padding: 20,
     borderRadius: 10,
   },
@@ -195,13 +159,11 @@ export const globalStyles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "bold",
     marginVertical: 8,
-    color: Colors.textPrimary,
   },
 
   resultCategory: {
     fontSize: 18,
     marginTop: 5,
-    color: Colors.textSecondary,
   },
 
   header: {
@@ -209,20 +171,17 @@ export const globalStyles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
-    color: Colors.textPrimary,
   },
 
   label: {
     fontSize: 16,
     marginTop: 10,
-    color: Colors.textPrimary,
   },
 
   picker: {
     height: 60,
-    width: '100%',
-    color: Colors.textPrimary,
-    marginBottom: 10, 
+    width: "100%",
+    marginBottom: 10,
   },
 
   converterButton: {
@@ -234,8 +193,8 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "center",
   },
   converterButtonText: {
-    color: "white",
     fontWeight: "600",
     textAlign: "center",
   },
 });
+

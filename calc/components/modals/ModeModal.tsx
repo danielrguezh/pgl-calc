@@ -1,7 +1,6 @@
-import { View, Text, Pressable, Modal } from 'react-native';
-import { Colors } from '@/constants/Colors';
-import { globalStyles } from '@/styles/global-styles';
+import { View, Text, Pressable, Modal, StyleSheet } from 'react-native';
 import ThemeText from '../ThemeText';
+import { useThemeColors } from '@/hooks/useThemeColors';
 
 interface ModeModalProps {
   visible: boolean;
@@ -11,6 +10,8 @@ interface ModeModalProps {
 }
 
 const ModeModal = ({ visible, onClose, selectedMode, onSelectMode }: ModeModalProps) => {
+  const colors = useThemeColors();
+
   const modes = [
     { label: 'Currency', emoji: '💰' },
     { label: 'Finance', emoji: '📈' },
@@ -21,40 +22,32 @@ const ModeModal = ({ visible, onClose, selectedMode, onSelectMode }: ModeModalPr
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <View style={globalStyles.modalContainer}>
-        <View style={globalStyles.modalContent}>
-          <ThemeText variant="h2" style={globalStyles.modalTitle}>
+      <View style={[styles.container]}>
+        <View style={[styles.content, { backgroundColor: colors.backgroundSecondary }]}>
+          <ThemeText variant="h2" style={{ color: colors.textPrimary, marginBottom: 15, textAlign: 'center' }}>
             Select a Mode
           </ThemeText>
 
-          {modes.map((mode) => (
-            <Pressable
-              key={mode.label}
-              onPress={() => onSelectMode(mode.label)}
-              style={[
-                globalStyles.modalButton,
-                {
-                  backgroundColor:
-                    selectedMode === mode.label ? Colors.orange : Colors.lightGray,
-                },
-              ]}
-            >
-              <Text
-                style={[
-                  globalStyles.modalButtonText,
-                  { color: selectedMode === mode.label ? 'white' : Colors.textPrimary },
-                ]}
+          {modes.map((mode) => {
+            const isSelected = selectedMode === mode.label;
+            return (
+              <Pressable
+                key={mode.label}
+                onPress={() => onSelectMode(mode.label)}
+                style={[styles.button, { backgroundColor: isSelected ? colors.orange : colors.background }]}
               >
-                {mode.emoji} {mode.label}
-              </Text>
-            </Pressable>
-          ))}
+                <Text style={{ color: isSelected ? 'white' : colors.textPrimary, fontWeight: '600' }}>
+                  {mode.emoji} {mode.label}
+                </Text>
+              </Pressable>
+            );
+          })}
 
           <Pressable
             onPress={onClose}
-            style={[globalStyles.modalButton, { backgroundColor: Colors.lightGray, marginTop: 10 }]}
+            style={[styles.button, { backgroundColor: colors.background, marginTop: 10 }]}
           >
-            <Text style={{ color: Colors.textPrimary }}>Close</Text>
+            <Text style={{ color: colors.textPrimary, fontWeight: '600' }}>Close</Text>
           </Pressable>
         </View>
       </View>
@@ -62,4 +55,27 @@ const ModeModal = ({ visible, onClose, selectedMode, onSelectMode }: ModeModalPr
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  content: {
+    width: '80%',
+    borderRadius: 20,
+    padding: 20,
+    alignItems: 'center',
+  },
+  button: {
+    width: '100%',
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+});
+
 export default ModeModal;
+

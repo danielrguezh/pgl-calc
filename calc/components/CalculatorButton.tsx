@@ -12,7 +12,7 @@ interface Props {
 
 const CalculatorButton = ({
     label, 
-    color = Colors.darkGray, 
+    color = Colors.dark.darkGray, 
     blackText = false, 
     onPress}: Props) => {
     return (

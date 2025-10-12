@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, ScrollView, Pressable, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import * as Clipboard from "expo-clipboard";
-import { globalStyles } from "@/styles/global-styles";
-import { Colors } from "@/constants/Colors";
 import { Moneda, ejemploMonedas } from "./data/coins";
+import { globalStyles } from "@/styles/global-styles";
+import { useThemeColors } from "@/hooks/useThemeColors";
 
 const CurrencyConverter = () => {
+  const colors = useThemeColors();
+
   const [monedas, setMonedas] = useState<Moneda[]>([]);
   const [cantidad, setCantidad] = useState<string>("0");
   const [monedaOrigen, setMonedaOrigen] = useState<string>("");
@@ -54,60 +63,94 @@ const CurrencyConverter = () => {
   const copiarResultado = async () => {
     if (resultado !== null) {
       await Clipboard.setStringAsync(resultado.toFixed(2));
-      Alert.alert("✅ Copiado", "El resultado se copió al portapapeles.");
+      Alert.alert("✅ Copiado", "El resultado se ha copiado al portapapeles");
     }
   };
 
   return (
-    <ScrollView contentContainerStyle={{ padding: 20 }}>
-      <Text style={globalStyles.header}>💱 Conversor de Monedas</Text>
-
-      <Text style={globalStyles.label}>Cantidad:</Text>
-      <TextInput
-        style={globalStyles.input}
-        keyboardType="numeric"
-        value={cantidad}
-        onChangeText={handleCantidadChange}
-        placeholder="Ej: 1000"
-      />
-
-      <Text style={globalStyles.label}>De:</Text>
-      <Picker
-        selectedValue={monedaOrigen}
-        onValueChange={setMonedaOrigen}
-        style={globalStyles.picker}
+    <ScrollView
+      contentContainerStyle={[
+        globalStyles.background,
+        { backgroundColor: colors.background },
+      ]}
+    >
+      <Text
+        style={[
+          globalStyles.header,
+          { color: colors.textPrimary },
+        ]}
       >
-        <Picker.Item label="Seleccione" value="" />
-        {monedas.map((m) => (
-          <Picker.Item key={m.id} label={m.id} value={m.id} />
-        ))}
-      </Picker>
+        Conversor de Monedas 💰
+      </Text>
 
-      <Text style={globalStyles.label}>A:</Text>
-      <Picker
-        selectedValue={monedaDestino}
-        onValueChange={setMonedaDestino}
-        style={globalStyles.picker}
-      >
-        <Picker.Item label="Seleccione" value="" />
-        {monedas.map((m) => (
-          <Picker.Item key={m.id} label={m.id} value={m.id} />
-        ))}
-      </Picker>
+      <View style={{ paddingHorizontal: 20 }}>
+        <Text style={[globalStyles.label, { color: colors.textPrimary }]}>
+          Cantidad:
+        </Text>
+        <TextInput
+          style={[
+            globalStyles.input,
+            {
+              backgroundColor: colors.backgroundSecondary,
+              color: colors.textPrimary,
+            },
+          ]}
+          keyboardType="numeric"
+          value={cantidad}
+          onChangeText={handleCantidadChange}
+          placeholder="Ingrese una cantidad"
+          placeholderTextColor={colors.textSecondary}
+        />
 
-      {resultado !== null && (
-        <View style={[globalStyles.resultContainer, { marginTop: 30 }]}>
-          <Text style={globalStyles.resultTitle}>Resultado:</Text>
-          <Text style={globalStyles.resultValue}>{resultado.toFixed(2)}</Text>
+        <Text style={[globalStyles.label, { color: colors.textPrimary }]}>
+          De:
+        </Text>
+        <Picker
+          selectedValue={monedaOrigen}
+          onValueChange={setMonedaOrigen}
+          style={{ height: 60, width: "100%", color: colors.textPrimary }}
+        >
+          <Picker.Item label="Seleccione" value="" />
+          {monedas.map((m) => (
+            <Picker.Item key={m.id} label={m.id} value={m.id} />
+          ))}
+        </Picker>
 
-          <Pressable
-            style={[globalStyles.converterButton, { backgroundColor: Colors.orange, marginTop: 15 }]}
+        <Text style={[globalStyles.label, { color: colors.textPrimary }]}>
+          A:
+        </Text>
+        <Picker
+          selectedValue={monedaDestino}
+          onValueChange={setMonedaDestino}
+          style={{ height: 60, width: "100%", color: colors.textPrimary }}
+        >
+          <Picker.Item label="Seleccione" value="" />
+          {monedas.map((m) => (
+            <Picker.Item key={m.id} label={m.id} value={m.id} />
+          ))}
+        </Picker>
+
+        {resultado !== null && (
+          <TouchableOpacity
+            style={[
+              globalStyles.resultContainer,
+              {
+                backgroundColor: colors.backgroundSecondary,
+                marginTop: 20,
+              },
+            ]}
             onPress={copiarResultado}
+            activeOpacity={0.8}
           >
-            <Text style={globalStyles.converterButtonText}>📋 Copiar resultado</Text>
-          </Pressable>
-        </View>
-      )}
+            <Text style={[globalStyles.resultValue, { color: colors.textPrimary }]}>
+              {resultado.toFixed(2)}
+            </Text>
+            <Text style={[globalStyles.converterButton, { backgroundColor: colors.orange, marginTop: 15 }]}>
+              (📋 Copy result)
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </ScrollView>
   );
 };

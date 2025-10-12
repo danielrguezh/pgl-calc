@@ -3,12 +3,14 @@ import { View, Text, TextInput, ScrollView, Pressable, Alert } from "react-nativ
 import { Picker } from "@react-native-picker/picker";
 import * as Clipboard from "expo-clipboard";
 import { globalStyles } from "@/styles/global-styles";
-import { Colors } from "@/constants/Colors";
+import { useThemeColors } from "@/hooks/useThemeColors";
 
 type Category = "Length" | "Weight" | "Temperature" | "Volume";
 type System = "Metric" | "Imperial";
 
 const TemperatureConverter = () => {
+  const colors = useThemeColors();
+
   const [value, setValue] = useState<string>("0");
   const [category, setCategory] = useState<Category>("Temperature");
   const [originSystem, setOriginSystem] = useState<System>("Metric");
@@ -69,43 +71,54 @@ const TemperatureConverter = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20 }}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20, backgroundColor: colors.background }}>
       <View style={{ flex: 1, justifyContent: "flex-start" }}>
-        <Text style={globalStyles.header}>Metric ↔ Imperial Converter ⚖️</Text>
+        <Text style={[globalStyles.header, { color: colors.textPrimary }]}>
+          Metric ↔ Imperial Converter ⚖️
+        </Text>
 
-        <Text style={globalStyles.label}>Value:</Text>
+        <Text style={[globalStyles.label, { color: colors.textPrimary }]}>Value:</Text>
         <TextInput
-          style={globalStyles.input}
+          style={[globalStyles.input, { backgroundColor: colors.backgroundSecondary, color: colors.textPrimary }]}
           keyboardType="numeric"
           value={value}
           onChangeText={handleChangeValue}
           placeholder="Enter a value"
+          placeholderTextColor={colors.textSecondary}
         />
 
-        <Text style={globalStyles.label}>Category:</Text>
-        <Picker selectedValue={category} onValueChange={(v) => setCategory(v as Category)} style={globalStyles.picker}>
+        <Text style={[globalStyles.label, { color: colors.textPrimary }]}>Category:</Text>
+        <Picker
+          selectedValue={category}
+          onValueChange={(v) => setCategory(v as Category)}
+          style={{ height: 60, width: "100%", color: colors.textPrimary }}
+        >
           <Picker.Item label="Length" value="Length" />
           <Picker.Item label="Weight" value="Weight" />
           <Picker.Item label="Temperature" value="Temperature" />
           <Picker.Item label="Volume" value="Volume" />
         </Picker>
 
-        <Text style={globalStyles.label}>Origin System:</Text>
-        <Picker selectedValue={originSystem} onValueChange={(v) => setOriginSystem(v as System)} style={globalStyles.picker}>
+        <Text style={[globalStyles.label, { color: colors.textPrimary }]}>Origin System:</Text>
+        <Picker
+          selectedValue={originSystem}
+          onValueChange={(v) => setOriginSystem(v as System)}
+          style={{ height: 60, width: "100%", color: colors.textPrimary }}
+        >
           <Picker.Item label="Metric" value="Metric" />
           <Picker.Item label="Imperial" value="Imperial" />
         </Picker>
 
-        <View style={globalStyles.resultContainer}>
-          <Text style={globalStyles.resultTitle}>Conversion ({getLabel()}):</Text>
-          <Text style={globalStyles.resultValue}>{result}</Text>
+        <View style={[globalStyles.resultContainer, { backgroundColor: colors.backgroundSecondary, marginTop: 20 }]}>
+          <Text style={[globalStyles.resultTitle, { color: colors.textPrimary }]}>Conversion ({getLabel()}):</Text>
+          <Text style={[globalStyles.resultValue, { color: colors.textPrimary }]}>{result}</Text>
 
-            <Pressable
-                style={[globalStyles.converterButton, { backgroundColor: Colors.orange, marginTop: 15 }]}
-                onPress={copyResult}
-            >
-                <Text style={globalStyles.converterButtonText}>📋 Copy result</Text>
-            </Pressable>
+          <Pressable
+            style={[globalStyles.converterButton, { backgroundColor: colors.orange, marginTop: 15 }]}
+            onPress={copyResult}
+          >
+            <Text style={globalStyles.converterButtonText}>📋 Copy result</Text>
+          </Pressable>
         </View>
       </View>
     </ScrollView>

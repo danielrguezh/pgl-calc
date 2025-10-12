@@ -10,6 +10,7 @@ import BMICalculator from '@/components/modes/BMICalculator';
 import CurrencyConverter from '@/components/modes/CurrencyCoverter';
 import FinanceTools from '@/components/modes/FinanceTools';
 import TemperatureConverter from '@/components/modes/TemperatureConverter';
+import { useThemeColors } from "@/hooks/useThemeColors";
 
 const CalculatorApp = () => {
   const {
@@ -32,6 +33,8 @@ const CalculatorApp = () => {
   const [showModeModal, setShowModeModal] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [selectedMode, setSelectedMode] = useState('Calculator');
+
+  const colors = useThemeColors();
 
   const renderContent = () => {
   switch (selectedMode) {
@@ -64,11 +67,12 @@ const CalculatorApp = () => {
 };
 
   return (
-    <View style={globalStyles.calculatorContainer}>
+    <View style={[globalStyles.calculatorContainer, { backgroundColor: colors.background }]}>
       <TopBar
         selectedMode={selectedMode}
         onModePress={() => setShowModeModal(true)}
         onHistoryPress={() => setShowHistory(true)}
+        colors={colors}
       />
 
       {renderContent()}

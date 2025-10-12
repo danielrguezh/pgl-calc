@@ -3,11 +3,13 @@ import { View, Text, TextInput, ScrollView, Pressable, Alert } from "react-nativ
 import { Picker } from "@react-native-picker/picker";
 import * as Clipboard from "expo-clipboard";
 import { globalStyles } from "@/styles/global-styles";
-import { Colors } from "@/constants/Colors";
+import { useThemeColors } from "@/hooks/useThemeColors";
 
 type Sistema = "Métrico" | "Imperial";
 
 const BMICalculator = () => {
+  const colors = useThemeColors();
+
   const [peso, setPeso] = useState<string>("0");
   const [altura, setAltura] = useState<string>("0");
   const [sistema, setSistema] = useState<Sistema>("Métrico");
@@ -32,7 +34,6 @@ const BMICalculator = () => {
     }
 
     const resultado = sistema === "Métrico" ? p / (h * h) : (p / (h * h)) * 703;
-
     setImc(resultado);
     setCategoria(categoriaIMC(resultado));
   };
@@ -52,53 +53,64 @@ const BMICalculator = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ padding: 20 }}>
-      <Text style={{ fontSize: 22, fontWeight: "bold", marginBottom: 20, textAlign: "center" }}>
+    <ScrollView contentContainerStyle={{ padding: 20, backgroundColor: colors.background }}>
+      <Text
+        style={{
+          fontSize: 22,
+          fontWeight: "bold",
+          marginBottom: 20,
+          textAlign: "center",
+          color: colors.textPrimary,
+        }}
+      >
         BMI Calculator 💪
       </Text>
 
-      <Text style={{ fontSize: 16, marginTop: 10 }}>Measurement system:</Text>
+      <Text style={{ fontSize: 16, marginTop: 10, color: colors.textPrimary }}>
+        Measurement system:
+      </Text>
       <Picker
         selectedValue={sistema}
         onValueChange={(value: string) => setSistema(value as Sistema)}
-        style={{ height: 60, width: "100%" }}
+        style={{ height: 60, width: "100%", color: colors.textPrimary }}
       >
         <Picker.Item label="Metric (kg / m)" value="Métrico" />
         <Picker.Item label="Imperial (lb / in)" value="Imperial" />
       </Picker>
 
-      <Text style={{ fontSize: 16, marginTop: 10 }}>Weight ({sistema === "Métrico" ? "kg" : "lb"}):</Text>
+      <Text style={{ fontSize: 16, marginTop: 10, color: colors.textPrimary }}>
+        Weight ({sistema === "Métrico" ? "kg" : "lb"}):
+      </Text>
       <TextInput
-        style={globalStyles.input}
+        style={[globalStyles.input, { backgroundColor: colors.backgroundSecondary, color: colors.textPrimary }]}
         keyboardType="numeric"
         value={peso}
         onChangeText={(t) => setPeso(limpiarTexto(t))}
         placeholder="e.g. 70"
+        placeholderTextColor={colors.textSecondary}
       />
 
-      <Text style={{ fontSize: 16, marginTop: 10 }}>
+      <Text style={{ fontSize: 16, marginTop: 10, color: colors.textPrimary }}>
         Height ({sistema === "Métrico" ? "meters" : "inches"}):
       </Text>
       <TextInput
-        style={globalStyles.input}
+        style={[globalStyles.input, { backgroundColor: colors.backgroundSecondary, color: colors.textPrimary }]}
         keyboardType="numeric"
         value={altura}
         onChangeText={(t) => setAltura(limpiarTexto(t))}
         placeholder={sistema === "Métrico" ? "e.g. 1.75" : "e.g. 70"}
+        placeholderTextColor={colors.textSecondary}
       />
 
       {imc !== null && (
-        <View style={[globalStyles.resultContainer, { marginTop: 30 }]}>
-            <Text style={globalStyles.resultTitle}>Your BMI:</Text>
-            <Text style={globalStyles.resultValue}>{imc.toFixed(2)}</Text>
-            <Text style={globalStyles.resultCategory}>{categoria}</Text>
+        <View style={[globalStyles.resultContainer, { marginTop: 30, backgroundColor: colors.backgroundSecondary }]}>
+          <Text style={[globalStyles.resultTitle, { color: colors.textPrimary }]}>Your BMI:</Text>
+          <Text style={[globalStyles.resultValue, { color: colors.textPrimary }]}>{imc.toFixed(2)}</Text>
+          <Text style={[globalStyles.resultCategory, { color: colors.textSecondary }]}>{categoria}</Text>
 
-            <Pressable
-                style={[globalStyles.converterButton, { backgroundColor: Colors.orange, marginTop: 15 }]}
-                onPress={copiarResultado}
-            >
-                <Text style={globalStyles.converterButtonText}>📋 Copy result</Text>
-            </Pressable>
+          <Pressable style={[globalStyles.converterButton, { backgroundColor: colors.orange, marginTop: 15 }]} onPress={copiarResultado}>
+            <Text style={globalStyles.converterButtonText}>📋 Copy result</Text>
+          </Pressable>
         </View>
       )}
     </ScrollView>
@@ -106,3 +118,4 @@ const BMICalculator = () => {
 };
 
 export default BMICalculator;
+
