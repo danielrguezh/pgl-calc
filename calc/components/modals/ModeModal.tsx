@@ -3,7 +3,14 @@ import { Colors } from '@/constants/Colors';
 import { globalStyles } from '@/styles/global-styles';
 import ThemeText from '../ThemeText';
 
-const ModeModal = ({ visible, onClose, selectedMode, onSelectMode }: any) => {
+interface ModeModalProps {
+  visible: boolean;
+  onClose: () => void;
+  selectedMode: string;
+  onSelectMode: (mode: string) => void;
+}
+
+const ModeModal = ({ visible, onClose, selectedMode, onSelectMode }: ModeModalProps) => {
   const modes = [
     { label: 'Currency', emoji: '💰' },
     { label: 'Finance', emoji: '📈' },
@@ -17,23 +24,38 @@ const ModeModal = ({ visible, onClose, selectedMode, onSelectMode }: any) => {
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <View style={globalStyles.modalContainer}>
         <View style={globalStyles.modalContent}>
-          <ThemeText variant="h2" style={globalStyles.modalTitle}>Selecciona un modo</ThemeText>
-          {modes.map((m) => (
+          <ThemeText variant="h2" style={globalStyles.modalTitle}>
+            Select a Mode
+          </ThemeText>
+
+          {modes.map((mode) => (
             <Pressable
-              key={m.label}
-              onPress={() => onSelectMode(m.label)}
+              key={mode.label}
+              onPress={() => onSelectMode(mode.label)}
               style={[
                 globalStyles.modalButton,
-                { backgroundColor: selectedMode === m.label ? Colors.orange : Colors.lightGray },
+                {
+                  backgroundColor:
+                    selectedMode === mode.label ? Colors.orange : Colors.lightGray,
+                },
               ]}
             >
-              <Text style={[globalStyles.modalButtonText, { color: selectedMode === m.label ? 'white' : 'black' }]}>
-                {m.emoji} {m.label}
+              <Text
+                style={[
+                  globalStyles.modalButtonText,
+                  { color: selectedMode === mode.label ? 'white' : Colors.textPrimary },
+                ]}
+              >
+                {mode.emoji} {mode.label}
               </Text>
             </Pressable>
           ))}
-          <Pressable onPress={onClose} style={{ marginTop: 10, padding: 8, borderRadius: 10, backgroundColor: Colors.lightGray }}>
-            <Text style={{ color: 'black' }}>Cerrar</Text>
+
+          <Pressable
+            onPress={onClose}
+            style={[globalStyles.modalButton, { backgroundColor: Colors.lightGray, marginTop: 10 }]}
+          >
+            <Text style={{ color: Colors.textPrimary }}>Close</Text>
           </Pressable>
         </View>
       </View>

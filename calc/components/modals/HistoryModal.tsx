@@ -3,21 +3,28 @@ import { Colors } from '@/constants/Colors';
 import { globalStyles } from '@/styles/global-styles';
 import ThemeText from '../ThemeText';
 
-const HistoryModal = ({ visible, onClose, history, onClear }: any) => {
+interface HistoryModalProps {
+  visible: boolean;
+  onClose: () => void;
+  history: string[];
+  onClear: () => void;
+}
+
+const HistoryModal = ({ visible, onClose, history, onClear }: HistoryModalProps) => {
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <View style={globalStyles.modalContainer}>
-        <View style={[globalStyles.modalContent, { maxHeight: '70%' }]}>
-          <ThemeText variant="h2" style={{ marginBottom: 10 }}>
-            Historial
+      <View style={globalStyles.historyModalContainer}>
+        <View style={globalStyles.historyModalContent}>
+          <ThemeText variant="h2" style={globalStyles.modalTitle}>
+            History
           </ThemeText>
 
           {history.length === 0 ? (
-            <Text style={{ color: 'gray' }}>No hay cálculos aún</Text>
+            <Text style={{ color: Colors.textSecondary }}>No calculations yet</Text>
           ) : (
             <ScrollView style={{ marginVertical: 10 }}>
               {[...history].reverse().map((item, index) => (
-                <Text key={index} style={{ marginBottom: 6, color: 'black' }}>
+                <Text key={index} style={{ marginBottom: 6, color: Colors.textPrimary }}>
                   {item}
                 </Text>
               ))}
@@ -27,26 +34,16 @@ const HistoryModal = ({ visible, onClose, history, onClear }: any) => {
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
             <Pressable
               onPress={onClose}
-              style={{
-                backgroundColor: Colors.lightGray,
-                paddingVertical: 8,
-                paddingHorizontal: 20,
-                borderRadius: 10,
-              }}
+              style={[globalStyles.modalButton, { backgroundColor: Colors.lightGray }]}
             >
-              <Text style={{ color: 'black' }}>Cerrar</Text>
+              <Text style={{ color: Colors.textPrimary }}>Close</Text>
             </Pressable>
 
             <Pressable
               onPress={onClear}
-              style={{
-                backgroundColor: Colors.orange,
-                paddingVertical: 8,
-                paddingHorizontal: 20,
-                borderRadius: 10,
-              }}
+              style={[globalStyles.modalButton, { backgroundColor: Colors.orange }]}
             >
-              <Text style={{ color: 'white' }}>Limpiar</Text>
+              <Text style={{ color: 'white' }}>Clear</Text>
             </Pressable>
           </View>
         </View>
