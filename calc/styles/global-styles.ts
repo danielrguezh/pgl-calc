@@ -38,7 +38,7 @@ export const globalStyles = StyleSheet.create({
   button: {
     height: 80,
     width: 80,
-    borderRadius: 24, // Bordes más suaves
+    borderRadius: 24,
     justifyContent: "center",
     alignItems: "center",
     shadowColor: "#000",
@@ -117,7 +117,7 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 0,
-    marginBottom: 50,
+    marginBottom: 30,
   },
 
   topBarButton: {
@@ -192,9 +192,25 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
   converterButtonText: {
     fontWeight: "600",
     textAlign: "center",
     fontSize: 16,
   },
+
+  frame: {
+    borderRadius: 20,
+    borderWidth: 3,
+    padding: 2,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 6,
+    marginHorizontal: -30,
+    minHeight: 162,
+    justifyContent: "flex-end",
+    marginBottom: 10,
+  }
 });

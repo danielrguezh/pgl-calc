@@ -41,18 +41,24 @@ const CalculatorView = ({
   return (
     <View>
       <View style={{ paddingHorizontal: 30, marginBottom: 20 }}>
+        <View
+          style={[globalStyles.frame, {backgroundColor: colors.backgroundSecondary,borderColor: colors.orange,}]}
+        >
         <ThemeText variant="h1" color={colors.textPrimary}>
           {formula}
         </ThemeText>
-        {formula === previousNumber ? (
-          <ThemeText variant="h2" color={colors.textSecondary}>
-            {" "}
-          </ThemeText>
-        ) : (
-          <ThemeText variant="h2" color={colors.textSecondary}>
-            {previousNumber}
-          </ThemeText>
-        )}
+        {
+          formula === previousNumber ? (
+            <ThemeText variant="h2" color={colors.textSecondary}>
+              {" "}
+            </ThemeText>
+          ) : (
+            <ThemeText variant="h2" color={colors.textSecondary}>
+              {previousNumber}
+            </ThemeText>
+          )
+        }
+        </View>
       </View>
 
       <View style={globalStyles.row}>
