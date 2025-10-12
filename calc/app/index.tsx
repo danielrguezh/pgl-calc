@@ -10,6 +10,7 @@ import BMICalculator from '@/components/modes/BMICalculator';
 import CurrencyConverter from '@/components/modes/CurrencyCoverter';
 import FinanceTools from '@/components/modes/FinanceTools';
 import TemperatureConverter from '@/components/modes/TemperatureConverter';
+import ImperialConverter from '@/components/modes/ImperialConverter';
 import { useThemeColors } from "@/hooks/useThemeColors";
 
 const CalculatorApp = () => {
@@ -45,6 +46,8 @@ const CalculatorApp = () => {
       return <FinanceTools />;
     case 'Temperature':
       return <TemperatureConverter />;
+    case 'SI-Imperial':
+      return <ImperialConverter />;
     case 'BMI':
       return <BMICalculator />;
     default:

@@ -63,7 +63,7 @@ const CurrencyConverter = () => {
   const copiarResultado = async () => {
     if (resultado !== null) {
       await Clipboard.setStringAsync(resultado.toFixed(2));
-      Alert.alert("✅ Copiado", "El resultado se ha copiado al portapapeles");
+      Alert.alert("✅ Copied", "BMI result copied to clipboard.");
     }
   };
 
@@ -80,12 +80,12 @@ const CurrencyConverter = () => {
           { color: colors.textPrimary },
         ]}
       >
-        Conversor de Monedas 💰
+        Currency Converter 💰
       </Text>
 
       <View style={{ paddingHorizontal: 20 }}>
         <Text style={[globalStyles.label, { color: colors.textPrimary }]}>
-          Cantidad:
+          Quantity:
         </Text>
         <TextInput
           style={[
@@ -98,33 +98,33 @@ const CurrencyConverter = () => {
           keyboardType="numeric"
           value={cantidad}
           onChangeText={handleCantidadChange}
-          placeholder="Ingrese una cantidad"
+          placeholder="Type any quantity"
           placeholderTextColor={colors.textSecondary}
         />
 
         <Text style={[globalStyles.label, { color: colors.textPrimary }]}>
-          De:
+          From:
         </Text>
         <Picker
           selectedValue={monedaOrigen}
           onValueChange={setMonedaOrigen}
           style={{ height: 60, width: "100%", color: colors.textPrimary }}
         >
-          <Picker.Item label="Seleccione" value="" />
+          <Picker.Item label="Select" value="" />
           {monedas.map((m) => (
             <Picker.Item key={m.id} label={m.id} value={m.id} />
           ))}
         </Picker>
 
         <Text style={[globalStyles.label, { color: colors.textPrimary }]}>
-          A:
+         To:
         </Text>
         <Picker
           selectedValue={monedaDestino}
           onValueChange={setMonedaDestino}
           style={{ height: 60, width: "100%", color: colors.textPrimary }}
         >
-          <Picker.Item label="Seleccione" value="" />
+          <Picker.Item label="Select" value="" />
           {monedas.map((m) => (
             <Picker.Item key={m.id} label={m.id} value={m.id} />
           ))}
