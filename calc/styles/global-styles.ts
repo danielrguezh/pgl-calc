@@ -107,6 +107,44 @@ export const globalStyles = StyleSheet.create({
     padding: 20,
   },
 
+  historyModalTextEmpty: {
+    color: Colors.textSecondary,
+    textAlign: 'center',
+  },
+
+  historyModalButtonRow: {
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+
+  historyModalButton: {
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+
+  historyModalButtonClose: {
+    backgroundColor: Colors.lightGray,
+    marginRight: 5,
+  },
+
+  historyModalButtonClear: {
+    backgroundColor: Colors.orange,
+    marginLeft: 5,
+  },
+
+  historyModalButtonTextClose: {
+    color: Colors.textPrimary,
+    fontWeight: '600',
+  },
+
+  historyModalButtonTextClear: {
+    color: 'white',
+    fontWeight: '600',
+  },
+
+
   topBarContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -130,5 +168,74 @@ export const globalStyles = StyleSheet.create({
   topBarSelectedMode: {
     color: Colors.orange,
     fontWeight: '700',
+  },
+
+  input: {
+    borderWidth: 1,
+    borderColor: Colors.lightGray,
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 10,
+    fontSize: 16,
+  },
+
+  resultContainer: {
+    alignItems: "center",
+    backgroundColor: Colors.backgroundLight,
+    padding: 20,
+    borderRadius: 10,
+  },
+
+  resultTitle: {
+    fontSize: 18,
+    fontWeight: "500",
+  },
+
+  resultValue: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginVertical: 8,
+    color: Colors.textPrimary,
+  },
+
+  resultCategory: {
+    fontSize: 18,
+    marginTop: 5,
+    color: Colors.textSecondary,
+  },
+
+  header: {
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center",
+    color: Colors.textPrimary,
+  },
+
+  label: {
+    fontSize: 16,
+    marginTop: 10,
+    color: Colors.textPrimary,
+  },
+
+  picker: {
+    height: 60,
+    width: '100%',
+    color: Colors.textPrimary,
+    marginBottom: 10, 
+  },
+
+  converterButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 10,
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  converterButtonText: {
+    color: "white",
+    fontWeight: "600",
+    textAlign: "center",
   },
 });

@@ -37,9 +37,13 @@ const CalculatorView = ({
     <View>
       <View style={{ paddingHorizontal: 30, marginBottom: 20 }}>
         <ThemeText variant="h1">{formula}</ThemeText>
-        {formula !== previousNumber && (
-          <ThemeText variant="h2">{previousNumber}</ThemeText>
-        )}
+        {
+          formula === previousNumber ? (
+            <ThemeText variant="h2"> </ThemeText>
+          ): (
+            <ThemeText variant="h2">{previousNumber}</ThemeText>
+          )
+        }
       </View>
 
       <View style={globalStyles.row}>

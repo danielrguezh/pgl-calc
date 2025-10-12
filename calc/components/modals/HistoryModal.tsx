@@ -20,7 +20,9 @@ const HistoryModal = ({ visible, onClose, history, onClear }: HistoryModalProps)
           </ThemeText>
 
           {history.length === 0 ? (
-            <Text style={{ color: Colors.textSecondary }}>No calculations yet</Text>
+            <Text style={globalStyles.historyModalTextEmpty}>
+              No calculations yet
+            </Text>
           ) : (
             <ScrollView style={{ marginVertical: 10 }}>
               {[...history].reverse().map((item, index) => (
@@ -31,19 +33,19 @@ const HistoryModal = ({ visible, onClose, history, onClear }: HistoryModalProps)
             </ScrollView>
           )}
 
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+          <View style={globalStyles.historyModalButtonRow}>
             <Pressable
               onPress={onClose}
-              style={[globalStyles.modalButton, { backgroundColor: Colors.lightGray }]}
+              style={[globalStyles.historyModalButton, globalStyles.historyModalButtonClose]}
             >
-              <Text style={{ color: Colors.textPrimary }}>Close</Text>
+              <Text style={globalStyles.historyModalButtonTextClose}>Close</Text>
             </Pressable>
 
             <Pressable
               onPress={onClear}
-              style={[globalStyles.modalButton, { backgroundColor: Colors.orange }]}
+              style={[globalStyles.historyModalButton, globalStyles.historyModalButtonClear]}
             >
-              <Text style={{ color: 'white' }}>Clear</Text>
+              <Text style={globalStyles.historyModalButtonTextClear}>Clear</Text>
             </Pressable>
           </View>
         </View>

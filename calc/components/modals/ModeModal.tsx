@@ -16,7 +16,6 @@ const ModeModal = ({ visible, onClose, selectedMode, onSelectMode }: ModeModalPr
     { label: 'Finance', emoji: '📈' },
     { label: 'Temperature', emoji: '🌡️' },
     { label: 'BMI', emoji: '⚖️' },
-    { label: 'Speed', emoji: '🚗' },
     { label: 'Calculator', emoji: '🔢' },
   ];
 

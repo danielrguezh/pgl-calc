@@ -10,7 +10,6 @@ import BMICalculator from '@/components/modes/BMICalculator';
 import CurrencyConverter from '@/components/modes/CurrencyCoverter';
 import FinanceTools from '@/components/modes/FinanceTools';
 import TemperatureConverter from '@/components/modes/TemperatureConverter';
-import SpeedConverter from '@/components/modes/SpeedConverter';
 
 const CalculatorApp = () => {
   const {
@@ -44,8 +43,6 @@ const CalculatorApp = () => {
       return <TemperatureConverter />;
     case 'BMI':
       return <BMICalculator />;
-    case 'Speed':
-      return <SpeedConverter />;
     default:
       return (
         <CalculatorView
@@ -79,7 +76,7 @@ const CalculatorApp = () => {
       <ModeModal
         visible={showModeModal}
         onClose={() => setShowModeModal(false)}
-        selectedMode={selectedMode}
+        selectedMode={selectedMode} 
         onSelectMode={(mode: string) => {
           setSelectedMode(mode);
           setShowModeModal(false);
