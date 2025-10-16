@@ -45,6 +45,14 @@ const BMICalculator = () => {
     return "Obesity 🔴";
   };
 
+  const colorPorCategoria = (categoria: string) => {
+    if (categoria.includes("🟡")) return "#FFD700"; // Amarillo
+    if (categoria.includes("🟢")) return "#32CD32"; // Verde
+    if (categoria.includes("🟠")) return "#FFA500"; // Naranja
+    if (categoria.includes("🔴")) return "#FF4500"; // Rojo
+    return colors.backgroundSecondary; // Por defecto
+  };
+
   const copiarResultado = async () => {
     if (imc !== null) {
       await Clipboard.setStringAsync(`BMI: ${imc.toFixed(2)} (${categoria})`);
@@ -82,7 +90,10 @@ const BMICalculator = () => {
         Weight ({sistema === "Métrico" ? "kg" : "lb"}):
       </Text>
       <TextInput
-        style={[globalStyles.input, { backgroundColor: colors.backgroundSecondary, color: colors.textPrimary }]}
+        style={[
+          globalStyles.input,
+          { backgroundColor: colors.backgroundSecondary, color: colors.textPrimary },
+        ]}
         keyboardType="numeric"
         value={peso}
         onChangeText={(t) => setPeso(limpiarTexto(t))}
@@ -94,7 +105,10 @@ const BMICalculator = () => {
         Height ({sistema === "Métrico" ? "meters" : "inches"}):
       </Text>
       <TextInput
-        style={[globalStyles.input, { backgroundColor: colors.backgroundSecondary, color: colors.textPrimary }]}
+        style={[
+          globalStyles.input,
+          { backgroundColor: colors.backgroundSecondary, color: colors.textPrimary },
+        ]}
         keyboardType="numeric"
         value={altura}
         onChangeText={(t) => setAltura(limpiarTexto(t))}
@@ -103,13 +117,31 @@ const BMICalculator = () => {
       />
 
       {imc !== null && (
-        <View style={[globalStyles.resultContainer, { marginTop: 30, backgroundColor: colors.backgroundSecondary }]}>
-          <Text style={[globalStyles.resultTitle, { color: colors.textPrimary }]}>Your BMI:</Text>
-          <Text style={[globalStyles.resultValue, { color: colors.textPrimary }]}>{imc.toFixed(2)}</Text>
-          <Text style={[globalStyles.resultCategory, { color: colors.textSecondary }]}>{categoria}</Text>
+        <View
+          style={[
+            globalStyles.resultContainer,
+            {
+              marginTop: 30,
+              backgroundColor: colorPorCategoria(categoria),
+              borderRadius: 10,
+              padding: 20,
+            },
+          ]}
+        >
+          <Text style={[globalStyles.resultTitle, { color: "#fff" }]}>Your BMI:</Text>
+          <Text style={[globalStyles.resultValue, { color: "#fff" }]}>{imc.toFixed(2)}</Text>
+          <Text style={[globalStyles.resultCategory, { color: "#fff" }]}>{categoria}</Text>
 
-          <Pressable style={[globalStyles.converterButton, { backgroundColor: colors.orange, marginTop: 15 }]} onPress={copiarResultado}>
-            <Text style={globalStyles.converterButtonText}>📋 Copy result</Text>
+          <Pressable
+            style={[
+              globalStyles.converterButton,
+              { backgroundColor: "rgba(255,255,255,0.3)", marginTop: 15 },
+            ]}
+            onPress={copiarResultado}
+          >
+            <Text style={[globalStyles.converterButtonText, { color: "#fff" }]}>
+              📋 Copy result
+            </Text>
           </Pressable>
         </View>
       )}
@@ -118,4 +150,3 @@ const BMICalculator = () => {
 };
 
 export default BMICalculator;
-

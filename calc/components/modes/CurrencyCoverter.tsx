@@ -59,7 +59,7 @@ const CurrencyConverter = () => {
     entero = entero.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     setCantidad(decimal !== undefined ? `${entero}.${decimal}` : entero);
   };
-
+ 
   const copiarResultado = async () => {
     if (resultado !== null) {
       await Clipboard.setStringAsync(resultado.toFixed(2));
