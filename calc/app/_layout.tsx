@@ -38,14 +38,6 @@ const RootLayout = () => {
           { backgroundColor: isLight ? Colors.light.background : Colors.dark.background },
         ]}
       >
-        <View style={styles.themeSwitchContainer}>
-          <Switch
-            value={isLight}
-            onValueChange={() => setTheme(isLight ? "dark" : "light")}
-            thumbColor={isLight ? Colors.dark.orange : Colors.light.darkGray}
-          />
-        </View>
-
         <Slot />
         <StatusBar style={isLight ? "dark" : "light"} />
       </View>

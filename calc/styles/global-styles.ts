@@ -212,5 +212,11 @@ export const globalStyles = StyleSheet.create({
     minHeight: 162,
     justifyContent: "flex-end",
     marginBottom: 10,
-  }
+  },
+
+  themeSwitchContainer: {
+    alignItems: "center",
+    marginTop: 40,
+    marginBottom: 10,
+  },
 });

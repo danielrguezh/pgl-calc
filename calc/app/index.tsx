@@ -1,5 +1,5 @@
-import { View } from 'react-native';
-import { useState } from 'react';
+import { Switch, View } from 'react-native';
+import { useContext, useState } from 'react';
 import { globalStyles } from '@/styles/global-styles';
 import { useCalculator } from '@/hooks/useCalculator';
 import CalculatorView from '@/components/CalculatorView';
@@ -12,6 +12,7 @@ import FinanceTools from '@/components/modes/FinanceTools';
 import TemperatureConverter from '@/components/modes/TemperatureConverter';
 import ImperialConverter from '@/components/modes/ImperialConverter';
 import { useThemeColors } from "@/hooks/useThemeColors";
+import { ThemeContext } from '@/components/ThemeContext';
 
 const CalculatorApp = () => {
   const {
@@ -37,6 +38,9 @@ const CalculatorApp = () => {
   const [selectedMode, setSelectedMode] = useState('Calculator');
 
   const colors = useThemeColors();
+
+  const { theme, setTheme } = useContext(ThemeContext);
+  const isLight = theme === "light";
 
   const renderContent = () => {
   switch (selectedMode) {
@@ -73,6 +77,13 @@ const CalculatorApp = () => {
 
   return (
     <View style={[globalStyles.calculatorContainer, { backgroundColor: colors.background }]}>
+      <View style={globalStyles.themeSwitchContainer}>
+        <Switch
+          value={isLight}
+          onValueChange={() => setTheme(isLight ? "dark" : "light")}
+          thumbColor={isLight ? colors.orange : colors.darkGray}
+        />
+        </View>
       <TopBar
         selectedMode={selectedMode}
         onModePress={() => setShowModeModal(true)}
