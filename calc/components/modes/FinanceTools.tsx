@@ -67,7 +67,7 @@ const FinanceTools = () => {
   const copiarResultado = async () => {
     if (resultado !== null) {
       await Clipboard.setStringAsync(`Resultado: ${resultado.toFixed(2)}`);
-      Alert.alert("✅ Copiado", "El resultado se copió al portapapeles.");
+      Alert.alert("📋 Copied", `The result ${resultado} was copied to clipboard.`);
     }
   };
 

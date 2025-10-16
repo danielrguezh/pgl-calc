@@ -63,7 +63,7 @@ const CurrencyConverter = () => {
   const copiarResultado = async () => {
     if (resultado !== null) {
       await Clipboard.setStringAsync(resultado.toFixed(2));
-      Alert.alert("✅ Copied", "BMI result copied to clipboard.");
+      Alert.alert("📋 Copied", `The result ${resultado} was copied to clipboard.`);
     }
   };
 

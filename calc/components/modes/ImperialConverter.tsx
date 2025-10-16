@@ -6,14 +6,14 @@ import { globalStyles } from "@/styles/global-styles";
 import { useThemeColors } from "@/hooks/useThemeColors";
 
 type Category = "Length" | "Weight" | "Volume";
-type System = "Metric" | "Imperial";
+type System = "SI" | "Imperial";
 
 const ImperialConverter = () => {
   const colors = useThemeColors();
 
   const [value, setValue] = useState<string>("0");
   const [category, setCategory] = useState<Category>("Length");
-  const [originSystem, setOriginSystem] = useState<System>("Metric");
+  const [originSystem, setOriginSystem] = useState<System>("SI");
   const [result, setResult] = useState<string>("0");
 
   useEffect(() => {
@@ -30,13 +30,13 @@ const ImperialConverter = () => {
     let res = 0;
     switch (category) {
       case "Length":
-        res = originSystem === "Metric" ? v * 3.28084 : v / 3.28084;
+        res = originSystem === "SI" ? v * 3.28084 : v / 3.28084;
         break;
       case "Weight":
-        res = originSystem === "Metric" ? v * 2.20462 : v / 2.20462;
+        res = originSystem === "SI" ? v * 2.20462 : v / 2.20462;
         break;
       case "Volume":
-        res = originSystem === "Metric" ? v * 0.264172 : v / 0.264172;
+        res = originSystem === "SI" ? v * 0.264172 : v / 0.264172;
         break;
     }
     setResult(res.toFixed(3));
@@ -50,11 +50,11 @@ const ImperialConverter = () => {
   const getLabel = () => {
     switch (category) {
       case "Length":
-        return originSystem === "Metric" ? "m → ft" : "ft → m";
+        return originSystem === "SI" ? "m → ft" : "ft → m";
       case "Weight":
-        return originSystem === "Metric" ? "kg → lb" : "lb → kg";
+        return originSystem === "SI" ? "kg → lb" : "lb → kg";
       case "Volume":
-        return originSystem === "Metric" ? "L → gal" : "gal → L";
+        return originSystem === "SI" ? "L → gal" : "gal → L";
     }
   };
 
@@ -96,7 +96,7 @@ const ImperialConverter = () => {
         onValueChange={(v) => setOriginSystem(v as System)}
         style={{ height: 60, width: "100%", color: colors.textPrimary }}
       >
-        <Picker.Item label="Metric" value="Metric" />
+        <Picker.Item label="SI" value="SI" />
         <Picker.Item label="Imperial" value="Imperial" />
       </Picker>
 

@@ -48,7 +48,7 @@ const BMICalculator = () => {
   const copiarResultado = async () => {
     if (imc !== null) {
       await Clipboard.setStringAsync(`BMI: ${imc.toFixed(2)} (${categoria})`);
-      Alert.alert("✅ Copied", "BMI result copied to clipboard.");
+      Alert.alert("📋 Copied", `The result ${imc} was copied to clipboard.`);
     }
   };
 
