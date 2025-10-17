@@ -45,7 +45,7 @@ const RootLayout = () => {
          { backgroundColor: isLight ? Colors.light.background : Colors.dark.background },
        ]}
      >
-       <View style={styles.themeSwitchContainer}>
+       <View style={globalStyles.themeSwitchContainer}>
          <Switch
            value={isLight}
            onValueChange={() => setTheme(isLight ? "dark" : "light")}
@@ -60,16 +60,6 @@ const RootLayout = () => {
    </ThemeContext.Provider>
  );
 };
-
-
-const styles = StyleSheet.create({
- themeSwitchContainer: {
-   alignItems: "center",
-   marginTop: 40,
-   marginBottom: 10,
- },
-});
-
 
 export default RootLayout;
 

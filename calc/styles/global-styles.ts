@@ -15,7 +15,7 @@ export const globalStyles = StyleSheet.create({
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 18,
+    marginBottom: 6,
   },
 
   mainResult: {
@@ -209,9 +209,9 @@ export const globalStyles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     elevation: 6,
     marginHorizontal: -30,
-    minHeight: 162,
+    minHeight: 150,
     justifyContent: "flex-end",
-    marginBottom: 10,
+    marginBottom: -5,
   },
 
   themeSwitchContainer: {

@@ -40,7 +40,7 @@ const CalculatorView = ({
 
   return (
     <View>
-      <View style={{ paddingHorizontal: 30, marginBottom: 20 }}>
+      <View style={{ paddingHorizontal: 30, marginBottom: 30, marginTop: -10 }}>
         <View
           style={[globalStyles.frame, {backgroundColor: colors.backgroundSecondary,borderColor: colors.orange,}]}
         >
